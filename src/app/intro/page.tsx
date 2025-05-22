@@ -1,7 +1,6 @@
 'use client';
 
 import { brandColors, title } from '@/lib/context';
-import Philosophy from '../components/Philosophy';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 

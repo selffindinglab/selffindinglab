@@ -1,8 +1,6 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-import Hero from './components/Hero';
-import Philosophy from './components/Philosophy';
 import Footer from './components/Footer';
 import BookModal from './components/BookModal';
 import { intro, title, brandColors } from '@/lib/context';

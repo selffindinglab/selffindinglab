@@ -1,12 +1,10 @@
+'use client';
 import { books } from '@/lib/book';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 
-export async function generateStaticParams() {
-    return books.map((book) => ({ slug: book.slug }));
-}
-
-export default function BookDetailPage({ params }: { params: { slug: string } }) {
+export default function BookDetailPage() {
+    const params = useParams();
     const book = books.find((b) => b.slug === params.slug);
 
     if (!book) return notFound();

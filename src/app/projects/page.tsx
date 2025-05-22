@@ -12,13 +12,13 @@ export default function ProjectPage() {
             <section className="py-24 px-6 text-center animate-fade-in">
                 <div className="max-w-4xl mx-auto">
                     <h1 className="text-5xl font-bold mb-6 leading-tight tracking-tight">
-                        숏터뷰 : 1000명의 ‘나’를 들여다보다
+                        숏터뷰 : 1000명의 &lsquo;나&rsquo;를 들여다보다
                     </h1>
                     <p
                         className="text-lg leading-relaxed"
                         style={{ color: brandColors.textSoft }}
                     >
-                        각자의 삶 속에서 건져 올린 작은 마음의 조각들. 우리는 그것을 ‘나’라는 고유한 풍경으로
+                        각자의 삶 속에서 건져 올린 작은 마음의 조각들. 우리는 그것을 &apos;나&apos;라는 고유한 풍경으로
                         마주합니다.
                     </p>
                 </div>
@@ -33,12 +33,13 @@ export default function ProjectPage() {
                             빠르게 소비되고 잊히는 콘텐츠 속에서, 우리는 한 사람의 진심 어린 한마디가 주는 울림에
                             집중합니다.
                             <br />
-                            '숏터뷰'는 짧지만 진한 질문과 응답을 통해, 사람들의 마음을 기록하고 연결하는 실험입니다.
+                            &apos;숏터뷰&apos;는 짧지만 진한 질문과 응답을 통해, 사람들의 마음을 기록하고 연결하는
+                            실험입니다.
                         </p>
                     </div>
 
                     <div className="space-y-6">
-                        <h2 className="text-3xl font-semibold">1000명의 ‘나’를 모은다는 것</h2>
+                        <h2 className="text-3xl font-semibold">1000명의 &lsquo;나&rsquo;를 모은다는 것</h2>
                         <p className="text-base leading-relaxed">
                             삶의 이유, 오늘의 감정, 지나온 어제와 닿아 있는 내면의 소리.
                             <br />
@@ -61,7 +62,7 @@ export default function ProjectPage() {
                 <div className="max-w-3xl mx-auto">
                     <h2 className="text-3xl font-bold mb-6">기록을 넘어, 연결로</h2>
                     <p className="text-lg mb-10 text-gray-700">
-                        사람들의 ‘마음’을 담아낸 기록은 결국 사람과 사람을 잇는 다리가 됩니다.
+                        사람들의 &lsquo;마음&rsquo;을 담아낸 기록은 결국 사람과 사람을 잇는 다리가 됩니다.
                         <br />이 프로젝트는 그 다리를 함께 건너는 여정입니다.
                     </p>
                     <div className="aspect-video bg-gray-300 rounded-xl shadow-inner flex items-center justify-center text-gray-500 text-xl">

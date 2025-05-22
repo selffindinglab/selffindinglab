@@ -1,26 +1,33 @@
 'use client';
 
-import { title } from '@/lib/context';
 import Link from 'next/link';
+import { brandColors } from '@/lib/context';
 
 const Navbar = () => {
     return (
-        <header className="fixed top-0 w-full z-50 bg-white shadow">
-            <nav
-                className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center"
-                aria-label="메인 네비게이션"
-            >
+        <header
+            className="fixed top-0 w-full z-50 shadow"
+            style={{ backgroundColor: brandColors.secondary }}
+        >
+            <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center font-semibold tracking-wide">
+                {/* 로고 영역 */}
                 <Link
                     href="/"
-                    className="text-xl font-semibold"
+                    className="text-lg sm:text-3xl font-bold flex items-center gap-2"
+                    style={{ color: brandColors.primary }}
                 >
-                    {title}
+                    <span>자기찾기연구소</span>
                 </Link>
-                <ul className="flex gap-6 text-sm font-medium">
+
+                {/* 메뉴 영역 */}
+                <ul
+                    className="flex gap-6 text-3xl sm:text-text-3xl items-center"
+                    style={{ color: brandColors.textDark }}
+                >
                     <li>
                         <Link
                             href="/intro"
-                            className="text-xl font-semibold"
+                            className="hover:underline"
                         >
                             소개
                         </Link>
@@ -28,7 +35,7 @@ const Navbar = () => {
                     <li>
                         <Link
                             href="/books"
-                            className="text-xl font-semibold"
+                            className="hover:underline"
                         >
                             출판물
                         </Link>
@@ -36,17 +43,17 @@ const Navbar = () => {
                     <li>
                         <Link
                             href="/news"
-                            className="text-xl font-semibold"
+                            className="hover:underline"
                         >
                             소식
                         </Link>
                     </li>
                     <li>
                         <Link
-                            href="/subscribe"
-                            className="text-xl font-semibold"
+                            href="/projects"
+                            className="hover:underline"
                         >
-                            구독하기
+                            프로젝트
                         </Link>
                     </li>
                 </ul>

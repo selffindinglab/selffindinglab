@@ -12,8 +12,8 @@ export const intro = `안녕하세요 자기찾기 연구소 출판사입니다 
 그 관심을 자신에게 보여주세요.`;
 
 export const brandColors = {
-    primary: '#ff6b6b', // 따뜻한 감성 레드
-    secondary: '#ffe8e1', // 연한 살구색 배경
-    textDark: '#2e2e2e', // 감성적인 진한 텍스트
-    textSoft: '#6b6b6b', // 부드러운 회색 텍스트
+    primary: '#4B3F72', // 고전적이고 신뢰감 있는 진한 보라빛 남색
+    secondary: '#F5F0E6', // 따뜻하고 부드러운 크림색 (책 종이 느낌)
+    textDark: '#2D2A26', // 차분하면서도 읽기 좋은 짙은 갈색
+    textSoft: '#7D7463', // 따뜻한 회갈색, 부드러운 인상
 };

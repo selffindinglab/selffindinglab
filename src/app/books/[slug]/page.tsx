@@ -1,13 +1,14 @@
 'use client';
+import Spinner from '@/app/components/Spinner';
 import { books } from '@/lib/book';
 import Image from 'next/image';
-import { notFound, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 export default function BookDetailPage() {
     const params = useParams();
     const book = books.find((b) => b.slug === params.slug);
 
-    if (!book) return notFound();
+    if (!book) return <Spinner />;
 
     return (
         <main className="pt-20 bg-white text-gray-900">

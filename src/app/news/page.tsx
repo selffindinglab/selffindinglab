@@ -2,12 +2,16 @@
 
 import { events } from '@/lib/event';
 import Image from 'next/image';
+import Smallhead from '../components/Smallhead';
 
 export default function NewsPage() {
     return (
         <main className="pt-20 bg-white text-gray-900">
-            <section className="px-6 py-24 max-w-6xl mx-auto">
-                <h1 className="text-4xl font-bold mb-12 text-center">이벤트 스케치</h1>
+            <section className="px-6 py-24 max-w-6xl mx-auto text-center">
+                <Smallhead
+                    title="이벤트 스케치"
+                    color="black"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     {events.map((event, index) => (
                         <div

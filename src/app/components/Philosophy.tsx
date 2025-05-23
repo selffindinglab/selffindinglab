@@ -8,12 +8,6 @@ export default function Philosophy() {
             style={{ backgroundColor: brandColors.secondary }}
         >
             <div className="max-w-3xl mx-auto animate-fade-in">
-                <h2
-                    className="text-4xl font-semibold mb-4 tracking-tight"
-                    style={{ color: brandColors.textDark }}
-                >
-                    소개
-                </h2>
                 <p
                     className="text-lg leading-relaxed whitespace-pre-line"
                     style={{ color: brandColors.textSoft }}

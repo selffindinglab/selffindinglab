@@ -10,7 +10,7 @@ export default function Hero() {
             }}
         >
             <h1
-                className="text-5xl md:text-7xl font-light tracking-tight leading-tight"
+                className="waguri-font text-5xl md:text-7xl font-light tracking-tight leading-tight"
                 style={{ color: brandColors.primary }}
             >
                 {title}

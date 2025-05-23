@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface Book {
     title: string;
@@ -22,10 +23,13 @@ export default function BookModal({ book, onClose }: { book: Book; onClose: () =
                 <h3 className="text-xl font-bold mb-4">{book.title}</h3>
 
                 <div className="relative">
-                    <img
+                    <Image
                         src={book.pages[pageIndex]}
                         alt={`Page ${pageIndex + 1}`}
+                        width={800}
+                        height={600}
                         className="mx-auto max-h-[70vh] object-contain rounded"
+                        style={{ height: 'auto' }}
                     />
                 </div>
 

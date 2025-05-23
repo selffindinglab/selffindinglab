@@ -7,6 +7,7 @@ import { intro, title, brandColors } from '@/lib/context';
 import { books } from '@/lib/book';
 import { Book } from '@/lib/type';
 import { events } from '@/lib/event';
+import Smallhead from './components/Smallhead';
 
 export default function Home() {
     const [selectedBook, setSelectedBook] = useState<Book | null>(null);
@@ -21,7 +22,7 @@ export default function Home() {
                 id="subscribe"
                 className="w-full py-32 px-6 text-center"
             >
-                <h1 className="text-5xl md:text-7xl font-light tracking-tight leading-tight">{title}</h1>
+                <h1 className="text-5xl md:text-7xl font-light tracking-tight waguri-font leading-tight">{title}</h1>
                 <p
                     className="mt-6 text-lg md:text-xl font-light"
                     style={{ color: 'rgba(255, 255, 255, 0.85)' }}
@@ -43,7 +44,10 @@ export default function Home() {
                 id="books"
                 className="py-20 px-4 max-w-6xl mx-auto text-center"
             >
-                <h2 className="text-3xl font-bold mb-12">출간 도서</h2>
+                <Smallhead
+                    title="출간 도서"
+                    color="white"
+                />
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 justify-items-center">
                     {books.map((book, index) => (
                         <button
@@ -78,7 +82,6 @@ export default function Home() {
                 style={{ backgroundColor: brandColors.secondary, color: brandColors.textDark }}
             >
                 <div className="max-w-3xl mx-auto animate-fade-in">
-                    <h2 className="text-4xl font-semibold mb-4 tracking-tight">소개</h2>
                     <p
                         className="text-lg leading-relaxed whitespace-pre-line"
                         style={{ color: brandColors.textSoft }}
@@ -101,7 +104,10 @@ export default function Home() {
                 className="py-20 px-6 text-center"
                 style={{ backgroundColor: brandColors.primary, color: 'white' }}
             >
-                <h2 className="text-3xl font-bold mb-8">콜라보 행사</h2>
+                <Smallhead
+                    title="콜라보 행사"
+                    color="white"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {events.map((event, index) => (
                         <div

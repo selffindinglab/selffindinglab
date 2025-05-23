@@ -3,6 +3,7 @@
 import { brandColors, title } from '@/lib/context';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Smallhead from '../components/Smallhead';
 
 const history = [
     { year: '2021', text: '출판사 설립 및 첫 도서 출간' },
@@ -20,7 +21,7 @@ export default function IntroPage() {
             {/* 헤더 섹션 */}
             <section className="py-24 px-6 text-center">
                 <div className="max-w-3xl mx-auto animate-fade-in">
-                    <h1 className="text-5xl font-bold mb-6 tracking-tight">{title}</h1>
+                    <h1 className="waguri-font text-5xl font-bold mb-6 tracking-tight">{title}</h1>
                     <p
                         className="text-lg leading-relaxed text-center"
                         style={{ color: brandColors.textSoft }}
@@ -29,15 +30,17 @@ export default function IntroPage() {
                     </p>
                 </div>
             </section>
-
-            {/* 철학/방향 소개 */}
             <section
                 className="py-20 px-6"
                 style={{ backgroundColor: 'white', color: brandColors.textDark }}
             >
                 <div className="max-w-4xl mx-auto space-y-12">
                     <div>
-                        <h2 className="text-3xl font-semibold mb-4">우리가 믿는 가치</h2>
+                        <Smallhead
+                            title="우리가 믿는 가치"
+                            color="black"
+                        />
+
                         <p className="text-base leading-relaxed text-gray-800">
                             우리는 소수의 목소리, 실험적인 콘텐츠, 느린 속도를 중요하게 생각합니다. 독자가 잠시 멈춰
                             생각하게 만드는 문장, 가볍지만 깊이 있는 표현이 담긴 책을 만들고 싶습니다.
@@ -45,7 +48,10 @@ export default function IntroPage() {
                     </div>
 
                     <div>
-                        <h2 className="text-3xl font-semibold mb-4">어떤 책을 만들까요?</h2>
+                        <Smallhead
+                            title="어떤 책을 만들까요?"
+                            color="black"
+                        />
                         <p className="text-base leading-relaxed text-gray-800">
                             문학, 에세이, 시각예술, 인문학 등 다양한 영역을 넘나들며, 출판 그 자체를 실험하는 작업을
                             이어갑니다. 한 권의 책이 작은 전시처럼 느껴지기를 바랍니다.
@@ -53,7 +59,10 @@ export default function IntroPage() {
                     </div>
 
                     <div>
-                        <h2 className="text-3xl font-semibold mb-4">출판 외 활동</h2>
+                        <Smallhead
+                            title="출판 외 활동"
+                            color="black"
+                        />
                         <p className="text-base leading-relaxed text-gray-800">
                             전시, 북토크, 글쓰기 워크숍 등 책을 매개로 다양한 프로젝트를 진행합니다. 이야기를 나누고
                             싶은 사람들과 공간을 연결합니다.
@@ -93,7 +102,10 @@ export default function IntroPage() {
                 style={{ backgroundColor: brandColors.primary, color: 'white' }}
             >
                 <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold mb-6">작은 책에서 시작된 실험들</h2>
+                    <Smallhead
+                        title="작은 책에서 시작된 실험들"
+                        color="white"
+                    />
                     <p
                         className="text-lg mb-8"
                         style={{ color: 'rgba(255, 255, 255, 0.8)' }}

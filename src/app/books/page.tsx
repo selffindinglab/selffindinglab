@@ -3,12 +3,16 @@
 import { books } from '@/lib/book';
 import Link from 'next/link';
 import Image from 'next/image';
+import Smallhead from '../components/Smallhead';
 
 export default function BookListPage() {
     return (
         <main className="pt-20 bg-white text-gray-900">
             <section className="px-6 py-24 max-w-6xl mx-auto text-center">
-                <h1 className="text-4xl font-bold mb-12">출간 도서</h1>
+                <Smallhead
+                    title="출간 도서"
+                    color="black"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {books.map((book) => (
                         <Link

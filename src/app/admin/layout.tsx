@@ -27,7 +27,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     }, [router]);
 
     const navItems = [
-        { label: 'ebook 만들기', href: '/admin/ebook' },
+        { label: 'ebook 만들기(개발중)', href: '/admin/ebook' },
         { label: '도서 관리', href: '/admin/books' },
         { label: '이벤트 관리', href: '/admin/events' },
     ];

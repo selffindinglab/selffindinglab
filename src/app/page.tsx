@@ -1,32 +1,55 @@
 'use client';
+
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Footer from './components/Footer';
-import BookModal from './components/BookModal';
-import { intro, title, brandColors } from '@/lib/context';
-import { books } from '@/lib/book';
-import { Book } from '@/lib/type';
-import { events } from '@/lib/event';
 import Smallhead from './components/Smallhead';
+import { intro, title, brandColors } from '@/lib/context';
+import { Book, Event } from '@/lib/type';
+import { supabase } from '@/lib/supabase';
 
 export default function Home() {
-    const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+    const [books, setBooks] = useState<Book[]>([]);
+    const [events, setEvents] = useState<Event[]>([]);
+
+    useEffect(() => {
+        const fetchBooks = async () => {
+            const { data, error } = await supabase
+                .from('books')
+                .select('id, title, genre, image_url,published_at')
+                .order('published_at', { ascending: false })
+                .limit(4);
+
+            if (error) {
+                console.error('책 데이터 오류:', error);
+            } else {
+                setBooks(data);
+            }
+        };
+
+        const fetchEvents = async () => {
+            const { data, error } = await supabase
+                .from('event')
+                .select('id, title, description, image_url,date,time')
+                .order('date', { ascending: false })
+                .limit(3); // 최근 3개만 가져오기
+            if (error) {
+                console.error('행사 데이터 오류:', error);
+            } else {
+                setEvents(data);
+            }
+        };
+
+        fetchBooks();
+        fetchEvents();
+    }, []);
 
     return (
-        <main
-            className="pt-20"
-            style={{ backgroundColor: brandColors.primary, color: 'white' }}
-        >
+        <main className="pt-20" style={{ backgroundColor: brandColors.primary, color: 'white' }}>
             {/* Hero Section */}
-            <section
-                id="subscribe"
-                className="w-full py-32 px-6 text-center"
-            >
+            <section id="subscribe" className="w-full py-32 px-6 text-center">
                 <h1 className="text-5xl md:text-7xl font-light tracking-tight waguri-font leading-tight">{title}</h1>
-                <p
-                    className="mt-6 text-lg md:text-xl font-light"
-                    style={{ color: 'rgba(255, 255, 255, 0.85)' }}
-                >
+                <p className="mt-6 text-lg md:text-xl font-light" style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
                     출판과 실험을 사랑하는
                     <br className="sm:hidden" />
                     &nbsp;1인 출판사
@@ -40,23 +63,16 @@ export default function Home() {
             </section>
 
             {/* Book Grid Section */}
-            <section
-                id="books"
-                className="py-20 px-4 max-w-6xl mx-auto text-center"
-            >
-                <Smallhead
-                    title="출간 도서"
-                    color="white"
-                />
+            <section id="books" className="py-20 px-4 max-w-6xl mx-auto text-center">
+                <Smallhead title="출간 도서" color="white" />
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 justify-items-center">
-                    {books.map((book, index) => (
+                    {books.map((book) => (
                         <button
-                            key={index}
-                            onClick={() => setSelectedBook(book)}
+                            key={book.id}
                             className="w-full flex flex-col items-center transition-transform hover:scale-105"
                         >
                             <Image
-                                src={book.thumbnail}
+                                src={book.image_url}
                                 alt={book.title}
                                 width={200}
                                 height={300}
@@ -67,12 +83,7 @@ export default function Home() {
                     ))}
                 </div>
 
-                {selectedBook && (
-                    <BookModal
-                        book={selectedBook}
-                        onClose={() => setSelectedBook(null)}
-                    />
-                )}
+                {/* {selectedBook && <BookModal book={selectedBook} onClose={() => setSelectedBook(null)} />} */}
             </section>
 
             {/* Intro Section */}
@@ -82,14 +93,8 @@ export default function Home() {
                 style={{ backgroundColor: brandColors.secondary, color: brandColors.textDark }}
             >
                 <div className="max-w-3xl mx-auto animate-fade-in">
-                    <p
-                        className="text-lg leading-relaxed whitespace-pre-line"
-                        style={{ color: brandColors.textSoft }}
-                    >
-                        <span
-                            className="font-medium"
-                            style={{ color: brandColors.textDark }}
-                        >
+                    <p className="text-lg leading-relaxed whitespace-pre-line" style={{ color: brandColors.textSoft }}>
+                        <span className="font-medium" style={{ color: brandColors.textDark }}>
                             {title}
                         </span>
                         {`는\n`}
@@ -104,18 +109,12 @@ export default function Home() {
                 className="py-20 px-6 text-center"
                 style={{ backgroundColor: brandColors.primary, color: 'white' }}
             >
-                <Smallhead
-                    title="콜라보 행사"
-                    color="white"
-                />
+                <Smallhead title="콜라보 행사" color="white" />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                    {events.map((event, index) => (
-                        <div
-                            key={index}
-                            className="rounded-2xl overflow-hidden bg-white text-black shadow-lg"
-                        >
+                    {events.map((event) => (
+                        <div key={event.id} className="rounded-2xl overflow-hidden bg-white text-black shadow-lg">
                             <Image
-                                src={event.imageUrl}
+                                src={event.image_url}
                                 alt={event.title}
                                 width={400}
                                 height={300}

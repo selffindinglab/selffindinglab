@@ -358,12 +358,7 @@ export default function EbookMaker() {
     const renderCoverEditor = () => (
         <>
             <h2 className="text-2xl font-semibold mb-4">책 커버 이미지 업로드</h2>
-            <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="w-full p-2 border rounded"
-            />
+            <input type="file" accept="image/*" onChange={handleImageUpload} className="w-full p-2 border rounded" />
             {imageLoading && <p className="text-gray-500 mt-2">이미지 로딩 중...</p>}
             {draftContent.coverImage && (
                 <Image
@@ -676,7 +671,7 @@ export default function EbookMaker() {
                 </div>
             );
         },
-        [draftContent, viewerScale, previewRef, pages]
+        [draftContent, viewerScale, previewRef, pages, imageLoading]
     );
 
     const renderEbookViewer = () => {
@@ -744,7 +739,7 @@ export default function EbookMaker() {
                         <li
                             key={idx}
                             className={`cursor-pointer p-2 rounded ${
-                                idx === viewerPageIndex ? 'bg-blue-100' : 'hover:bg-gray-100'
+                                idx === selectedIndex ? 'bg-blue-100' : 'hover:bg-gray-100'
                             }`}
                             onClick={() => {
                                 setViewerPageIndex(idx);
@@ -878,7 +873,7 @@ export default function EbookMaker() {
     const memoizedPreview = useMemo(() => {
         if (!pages[selectedIndex]) return <p className="text-gray-500">선택된 페이지가 없습니다.</p>;
         return renderPagePreview(pages[selectedIndex], selectedIndex);
-    }, [selectedIndex, pages, draftContent, renderPagePreview]);
+    }, [selectedIndex, pages, renderPagePreview]);
 
     return (
         <div className="flex flex-col h-screen gap-4 p-6 bg-gray-100">
@@ -936,11 +931,7 @@ export default function EbookMaker() {
 
             {isViewerOpen && renderEbookViewer()}
 
-            <div
-                ref={captureRef}
-                className="absolute"
-                style={{ top: '-9999px', left: '-9999px' }}
-            >
+            <div ref={captureRef} className="absolute" style={{ top: '-9999px', left: '-9999px' }}>
                 {pages.map((page, idx) => renderPagePreview(page, idx, true))}
             </div>
         </div>

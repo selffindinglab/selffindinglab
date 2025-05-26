@@ -1,7 +1,18 @@
 export type Book = {
+    id: number;
     title: string;
-    thumbnail: string;
-    pages: string[];
+    genre: string;
+    image_url: string;
+    published_at: string;
+};
+
+export type Event = {
+    id: number;
+    title: string;
+    description: string;
+    image_url: string;
+    date: string;
+    time: string;
 };
 export type PageType = 'cover' | 'company' | 'toc' | 'content';
 

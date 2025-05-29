@@ -1,8 +1,6 @@
 // components/RichTextEditor.tsx
 
 'use client';
-
-import { useState } from 'react';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
@@ -63,7 +61,11 @@ export default function RichTextEditor({ content, onChange }: { content: string;
                 >
                     Italic
                 </button>
-                <button type="button" onClick={addImage} className="px-3 py-1 rounded bg-blue-600 text-white">
+                <button
+                    type="button"
+                    onClick={addImage}
+                    className="px-3 py-1 rounded bg-blue-600 text-white"
+                >
                     이미지 삽입
                 </button>
             </div>

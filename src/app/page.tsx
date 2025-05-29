@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import Footer from './components/Footer';
 import Smallhead from './components/Smallhead';
 import { intro, title, brandColors } from '@/lib/context';
 import { Book, Event } from '@/lib/type';
@@ -30,7 +29,7 @@ export default function Home() {
         const fetchEvents = async () => {
             const { data, error } = await supabase
                 .from('event')
-                .select('id, title, description, image_url,date,time')
+                .select('id, title, description, image_url,date,time,link,location,subtitle,program_type')
                 .order('date', { ascending: false })
                 .limit(3); // 최근 3개만 가져오기
             if (error) {
@@ -45,11 +44,20 @@ export default function Home() {
     }, []);
 
     return (
-        <main className="pt-20" style={{ backgroundColor: brandColors.primary, color: 'white' }}>
+        <main
+            className="pt-20"
+            style={{ backgroundColor: brandColors.primary, color: 'white' }}
+        >
             {/* Hero Section */}
-            <section id="subscribe" className="w-full py-32 px-6 text-center">
+            <section
+                id="subscribe"
+                className="w-full py-32 px-6 text-center"
+            >
                 <h1 className="text-5xl md:text-7xl font-light tracking-tight waguri-font leading-tight">{title}</h1>
-                <p className="mt-6 text-lg md:text-xl font-light" style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
+                <p
+                    className="mt-6 text-lg md:text-xl font-light"
+                    style={{ color: 'rgba(255, 255, 255, 0.85)' }}
+                >
                     출판과 실험을 사랑하는
                     <br className="sm:hidden" />
                     &nbsp;1인 출판사
@@ -63,8 +71,14 @@ export default function Home() {
             </section>
 
             {/* Book Grid Section */}
-            <section id="books" className="py-20 px-4 max-w-6xl mx-auto text-center">
-                <Smallhead title="출간 도서" color="white" />
+            <section
+                id="books"
+                className="py-20 px-4 max-w-6xl mx-auto text-center"
+            >
+                <Smallhead
+                    title="출간 도서"
+                    color="white"
+                />
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 justify-items-center">
                     {books.map((book) => (
                         <button
@@ -93,8 +107,14 @@ export default function Home() {
                 style={{ backgroundColor: brandColors.secondary, color: brandColors.textDark }}
             >
                 <div className="max-w-3xl mx-auto animate-fade-in">
-                    <p className="text-lg leading-relaxed whitespace-pre-line" style={{ color: brandColors.textSoft }}>
-                        <span className="font-medium" style={{ color: brandColors.textDark }}>
+                    <p
+                        className="text-lg leading-relaxed whitespace-pre-line"
+                        style={{ color: brandColors.textSoft }}
+                    >
+                        <span
+                            className="font-medium"
+                            style={{ color: brandColors.textDark }}
+                        >
                             {title}
                         </span>
                         {`는\n`}
@@ -109,10 +129,16 @@ export default function Home() {
                 className="py-20 px-6 text-center"
                 style={{ backgroundColor: brandColors.primary, color: 'white' }}
             >
-                <Smallhead title="콜라보 행사" color="white" />
+                <Smallhead
+                    title="콜라보 행사"
+                    color="white"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {events.map((event) => (
-                        <div key={event.id} className="rounded-2xl overflow-hidden bg-white text-black shadow-lg">
+                        <div
+                            key={event.id}
+                            className="rounded-2xl overflow-hidden bg-white text-black shadow-lg"
+                        >
                             <Image
                                 src={event.image_url}
                                 alt={event.title}

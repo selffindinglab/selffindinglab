@@ -3,19 +3,34 @@
 import { useEffect, useState } from 'react';
 import { useParams, notFound } from 'next/navigation';
 import Image from 'next/image';
+import { supabase } from '@/lib/supabase';
+
+type Program = {
+    id: string;
+    title: string;
+    subtitle?: string;
+    description: string;
+    image_url: string;
+    date: string;
+    time: string;
+    location?: string;
+    link?: string;
+};
 
 export default function ProgramDetailPage() {
     const params = useParams();
-    const [program, setProgram] = useState<any>(null);
+    const [program, setProgram] = useState<Program | null>(null);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchProgram = async () => {
+            setLoading(true);
             try {
-                const res = await fetch(`/api/event/${params.id}`);
-                if (!res.ok) throw new Error('Program not found');
-                const data = await res.json();
+                const { data, error } = await supabase.from('event').select('*').eq('id', params.id).single();
+
+                if (error) throw error;
+
                 setProgram(data);
             } catch {
                 setError(true);
@@ -23,6 +38,7 @@ export default function ProgramDetailPage() {
                 setLoading(false);
             }
         };
+
         fetchProgram();
     }, [params.id]);
 

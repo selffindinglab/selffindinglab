@@ -148,7 +148,6 @@ export default function Home() {
                             />
                             <div className="p-4 text-left">
                                 <h3 className="text-xl font-semibold">{event.title}</h3>
-                                <p className="text-sm text-gray-700 mt-2">{event.description}</p>
                             </div>
                         </div>
                     ))}

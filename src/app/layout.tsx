@@ -5,6 +5,7 @@ import { cookies } from 'next/headers';
 import { AuthProvider } from './context/AuthContext';
 import './globals.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 export default async function RootLayout({ children }: { children: ReactNode }) {
     const supabase = createServerComponentClient({ cookies });
 
@@ -15,10 +16,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     return (
         <html lang="ko">
             <body>
-                {/* session을 AuthProvider에 초기값으로 넘겨줌 */}
                 <AuthProvider initialSession={session}>
                     <Navbar />
                     {children}
+                    <Footer />
                 </AuthProvider>
             </body>
         </html>

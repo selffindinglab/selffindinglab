@@ -3,26 +3,24 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import { Event } from '@/lib/type';
 
-type Event = {
-    id: number;
-    title: string;
-    description: string;
-    date: string;
-    time: string;
-    link: string;
-    image_url: string;
-};
+const RichTextEditor = dynamic(() => import('@/app/components/RichTextEditor'), { ssr: false });
 
 export default function EventPage() {
     const [events, setEvents] = useState<Event[]>([]);
     const [showForm, setShowForm] = useState(false);
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [form, setForm] = useState({
         title: '',
+        subtitle: '',
         description: '',
         date: '',
         time: '',
+        location: '',
         link: '',
+        program_type: '이벤트', // 기본값
         image: null as File | null,
     });
 
@@ -32,7 +30,7 @@ export default function EventPage() {
         else setEvents(data as Event[]);
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
@@ -40,6 +38,9 @@ export default function EventPage() {
         const file = e.target.files?.[0];
         if (file) {
             setForm({ ...form, image: file });
+            const reader = new FileReader();
+            reader.onloadend = () => setImagePreview(reader.result as string);
+            reader.readAsDataURL(file);
         }
     };
 
@@ -54,12 +55,16 @@ export default function EventPage() {
     const resetForm = () => {
         setForm({
             title: '',
+            subtitle: '',
             description: '',
             date: '',
             time: '',
+            location: '',
             link: '',
+            program_type: '이벤트',
             image: null,
         });
+        setImagePreview(null);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -72,10 +77,13 @@ export default function EventPage() {
 
             const { error } = await supabase.from('event').insert({
                 title: form.title,
+                subtitle: form.subtitle,
                 description: form.description,
                 date: form.date,
                 time: form.time,
+                location: form.location,
                 link: form.link,
+                program_type: form.program_type,
                 image_url,
             });
 
@@ -137,14 +145,53 @@ export default function EventPage() {
                         className="w-full border p-3 rounded focus:outline-none focus:ring focus:ring-emerald-300"
                         required
                     />
-                    <textarea
-                        name="description"
-                        value={form.description}
+
+                    <input
+                        name="subtitle"
+                        value={form.subtitle}
                         onChange={handleInputChange}
-                        placeholder="설명"
+                        placeholder="부제목 (subtitle)"
                         className="w-full border p-3 rounded focus:outline-none focus:ring focus:ring-emerald-300"
-                        required
                     />
+
+                    <input
+                        name="location"
+                        value={form.location}
+                        onChange={handleInputChange}
+                        placeholder="장소"
+                        className="w-full border p-3 rounded focus:outline-none focus:ring focus:ring-emerald-300"
+                    />
+
+                    <div>
+                        <label className="block mb-2 font-semibold">썸네일 이미지 업로드</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="w-full border p-2 rounded bg-white"
+                        />
+                        {imagePreview && (
+                            <div className="mt-3">
+                                <p className="text-sm text-gray-600 mb-1">미리보기:</p>
+                                <Image
+                                    src={imagePreview}
+                                    alt="미리보기 이미지"
+                                    width={600}
+                                    height={400}
+                                    className="rounded border object-cover max-h-64"
+                                />
+                            </div>
+                        )}
+                    </div>
+
+                    <div>
+                        <label className="block mb-1 font-semibold">상세 설명</label>
+                        <RichTextEditor
+                            content={form.description}
+                            onChange={(html) => setForm({ ...form, description: html })}
+                        />
+                    </div>
+
                     <input
                         name="link"
                         type="url"
@@ -153,6 +200,7 @@ export default function EventPage() {
                         placeholder="관련 링크 (선택)"
                         className="w-full border p-3 rounded focus:outline-none focus:ring focus:ring-emerald-300"
                     />
+
                     <div className="flex gap-4">
                         <input
                             name="date"
@@ -171,12 +219,24 @@ export default function EventPage() {
                             required
                         />
                     </div>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="w-full border p-2 rounded bg-white"
-                    />
+
+                    <div>
+                        <label htmlFor="program_type" className="block mb-2 font-semibold">
+                            프로그램 유형
+                        </label>
+                        <select
+                            id="program_type"
+                            name="program_type"
+                            value={form.program_type}
+                            onChange={handleInputChange}
+                            className="w-full border p-3 rounded"
+                        >
+                            <option value="강연">강연</option>
+                            <option value="이벤트">이벤트</option>
+                            <option value="원데이클래스">원데이클래스</option>
+                        </select>
+                    </div>
+
                     <button
                         type="submit"
                         className="px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
@@ -210,10 +270,13 @@ export default function EventPage() {
                                 />
                             )}
                             <h3 className="text-xl font-bold mb-1">{event.title}</h3>
-                            <p className="text-gray-700 mb-2">{event.description}</p>
+                            {event.subtitle && <p className="text-gray-600 mb-2 italic">{event.subtitle}</p>}
+
                             <p className="text-sm text-gray-500 mb-2">
                                 📅 {formatDate(event.date)} ⏰ {event.time}
                             </p>
+                            {event.location && <p className="text-sm text-gray-500 mb-2">📍 {event.location}</p>}
+                            <p className="text-sm text-gray-500 mb-2 font-semibold">{event.program_type}</p>
                             {event.link && (
                                 <a
                                     href={event.link}

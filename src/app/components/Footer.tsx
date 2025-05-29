@@ -1,3 +1,4 @@
+'use client';
 import { title } from '@/lib/context';
 
 export default function Footer() {

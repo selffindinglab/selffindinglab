@@ -4,9 +4,10 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
+
 type AuthContextType = {
     session: Session | null;
-    login: (email: string, password: string) => Promise<void>;
+    login: (email: string, password: string, redirectTo?: string) => Promise<void>;
     logout: () => Promise<void>;
 };
 
@@ -22,32 +23,26 @@ export const AuthProvider = ({ children, initialSession }: AuthProviderProps) =>
     const router = useRouter();
 
     useEffect(() => {
-        const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
-            if (_event === 'SIGNED_OUT') {
-                router.replace('/login');
-            }
         });
 
-        return () => {
-            authListener.subscription.unsubscribe();
-        };
-    }, [router]);
+        return () => subscription.unsubscribe();
+    }, []);
 
-    const login = async (email: string, password: string) => {
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    const login = async (email: string, password: string, redirectTo?: string) => {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) {
             alert('로그인 실패: ' + error.message);
-        } else {
-            setSession(data.session);
-            router.replace('/dashboard');
+        } else if (redirectTo) {
+            router.replace(redirectTo);
         }
     };
 
     const logout = async () => {
         await supabase.auth.signOut();
-        setSession(null);
-        router.replace('/login');
     };
 
     return <AuthContext.Provider value={{ session, login, logout }}>{children}</AuthContext.Provider>;

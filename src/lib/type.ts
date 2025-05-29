@@ -10,9 +10,13 @@ export type Event = {
     id: number;
     title: string;
     description: string;
-    image_url: string;
     date: string;
     time: string;
+    link: string;
+    image_url: string;
+    location: string;
+    subtitle: string;
+    program_type: string;
 };
 export type PageType = 'cover' | 'company' | 'toc' | 'content';
 

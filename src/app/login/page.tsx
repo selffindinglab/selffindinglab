@@ -39,16 +39,13 @@ export default function ReframePoint() {
             {session ? (
                 <>
                     <Spinner />
-                    <button
-                        className="bg-red-500 text-white px-4 py-2 rounded-md w-64 mt-4"
-                        onClick={logout}
-                    >
+                    <button className="bg-red-500 text-white px-4 py-2 rounded-md w-64 mt-4" onClick={logout}>
                         로그아웃
                     </button>
                 </>
             ) : (
                 <>
-                    <h1 className="text-2xl font-bold mb-4">상담사 로그인</h1>
+                    <h1 className="text-2xl font-bold mb-4">로그인</h1>
                     <input
                         className="border p-2 mb-2 w-64"
                         type="email"

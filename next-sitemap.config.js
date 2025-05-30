@@ -1,20 +1,16 @@
 /** @type {import('next-sitemap').IConfig} */
-
 module.exports = {
     siteUrl: 'https://www.selffindinglab.co.kr',
     generateRobotsTxt: true,
-    sitemapSize: 5000,
     changefreq: 'daily',
-    priority: 1,
-    // admin, dashboard 경로 제외
-    exclude: ['/admin*'],
-    robotsTxtOptions: {
-        policies: [
-            {
-                userAgent: '*',
-                allow: '/',
-                disallow: ['/admin'], // robots.txt 차단
-            },
-        ],
-    },
+    priority: 0.7,
+    sitemapSize: 5000,
+    // 수동 경로 추가
+    additionalPaths: async (config) => [
+        { loc: '/' },
+        { loc: '/intro' },
+        { loc: '/books' },
+        { loc: '/news' },
+        { loc: '/projects' },
+    ],
 };

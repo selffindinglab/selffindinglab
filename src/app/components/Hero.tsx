@@ -1,4 +1,4 @@
-import { intro, title, brandColors } from '@/lib/context';
+import { intro, title, brandColors } from '@/app/lib/context';
 
 export default function Hero() {
     return (
@@ -16,10 +16,7 @@ export default function Hero() {
                 {title}
             </h1>
 
-            <p
-                className="mt-6 text-lg md:text-xl font-light text-gray-600"
-                style={{ color: brandColors.textDark }}
-            >
+            <p className="mt-6 text-lg md:text-xl font-light text-gray-600" style={{ color: brandColors.textDark }}>
                 출판과 실험을 사랑하는
                 <br className="sm:hidden" />
                 &nbsp;1인 출판사

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/app/lib/supabase';
 import Link from 'next/link';
 import Image from 'next/image';
 import Smallhead from '../components/Smallhead';

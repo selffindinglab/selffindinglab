@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/app/lib/supabase';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { Event } from '@/lib/type';
+import { Event } from '@/app/lib/type';
 
 const RichTextEditor = dynamic(() => import('@/app/components/RichTextEditor'), { ssr: false });
 

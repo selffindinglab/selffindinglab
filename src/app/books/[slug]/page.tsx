@@ -1,6 +1,6 @@
 'use client';
 import Spinner from '@/app/components/Spinner';
-import { books } from '@/lib/book';
+import { books } from '@/app/lib/book';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 

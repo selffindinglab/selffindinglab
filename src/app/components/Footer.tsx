@@ -1,5 +1,5 @@
 'use client';
-import { title } from '@/lib/context';
+import { title } from '@/app/lib/context';
 
 export default function Footer() {
     return (

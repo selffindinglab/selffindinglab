@@ -4,7 +4,7 @@
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/app/lib/supabase';
 
 export default function RichTextEditor({ content, onChange }: { content: string; onChange: (html: string) => void }) {
     const editor = useEditor({
@@ -61,11 +61,7 @@ export default function RichTextEditor({ content, onChange }: { content: string;
                 >
                     Italic
                 </button>
-                <button
-                    type="button"
-                    onClick={addImage}
-                    className="px-3 py-1 rounded bg-blue-600 text-white"
-                >
+                <button type="button" onClick={addImage} className="px-3 py-1 rounded bg-blue-600 text-white">
                     이미지 삽입
                 </button>
             </div>

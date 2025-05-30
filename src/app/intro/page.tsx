@@ -1,6 +1,6 @@
 'use client';
 
-import { brandColors, title } from '@/lib/context';
+import { brandColors, title } from '@/app/lib/context';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Smallhead from '../components/Smallhead';
@@ -14,32 +14,20 @@ const history = [
 
 export default function IntroPage() {
     return (
-        <main
-            className="pt-20"
-            style={{ backgroundColor: brandColors.secondary, color: brandColors.textDark }}
-        >
+        <main className="pt-20" style={{ backgroundColor: brandColors.secondary, color: brandColors.textDark }}>
             {/* 헤더 섹션 */}
             <section className="py-24 px-6 text-center">
                 <div className="max-w-3xl mx-auto animate-fade-in">
                     <h1 className="waguri-font text-5xl font-bold mb-6 tracking-tight">{title}</h1>
-                    <p
-                        className="text-lg leading-relaxed text-center"
-                        style={{ color: brandColors.textSoft }}
-                    >
+                    <p className="text-lg leading-relaxed text-center" style={{ color: brandColors.textSoft }}>
                         작은 목소리를 담아내고, 실험적인 출판을 지향하는 출판사입니다.
                     </p>
                 </div>
             </section>
-            <section
-                className="py-20 px-6"
-                style={{ backgroundColor: 'white', color: brandColors.textDark }}
-            >
+            <section className="py-20 px-6" style={{ backgroundColor: 'white', color: brandColors.textDark }}>
                 <div className="max-w-4xl mx-auto space-y-12">
                     <div>
-                        <Smallhead
-                            title="우리가 믿는 가치"
-                            color="black"
-                        />
+                        <Smallhead title="우리가 믿는 가치" color="black" />
 
                         <p className="text-base leading-relaxed text-gray-800">
                             우리는 소수의 목소리, 실험적인 콘텐츠, 느린 속도를 중요하게 생각합니다. 독자가 잠시 멈춰
@@ -48,10 +36,7 @@ export default function IntroPage() {
                     </div>
 
                     <div>
-                        <Smallhead
-                            title="어떤 책을 만들까요?"
-                            color="black"
-                        />
+                        <Smallhead title="어떤 책을 만들까요?" color="black" />
                         <p className="text-base leading-relaxed text-gray-800">
                             문학, 에세이, 시각예술, 인문학 등 다양한 영역을 넘나들며, 출판 그 자체를 실험하는 작업을
                             이어갑니다. 한 권의 책이 작은 전시처럼 느껴지기를 바랍니다.
@@ -59,10 +44,7 @@ export default function IntroPage() {
                     </div>
 
                     <div>
-                        <Smallhead
-                            title="출판 외 활동"
-                            color="black"
-                        />
+                        <Smallhead title="출판 외 활동" color="black" />
                         <p className="text-base leading-relaxed text-gray-800">
                             전시, 북토크, 글쓰기 워크숍 등 책을 매개로 다양한 프로젝트를 진행합니다. 이야기를 나누고
                             싶은 사람들과 공간을 연결합니다.
@@ -72,10 +54,7 @@ export default function IntroPage() {
             </section>
 
             {/* 연혁 섹션 */}
-            <section
-                className="py-24 px-6"
-                style={{ backgroundColor: '#f9f9f9' }}
-            >
+            <section className="py-24 px-6" style={{ backgroundColor: '#f9f9f9' }}>
                 <div className="max-w-3xl mx-auto">
                     <h2 className="text-3xl font-bold mb-12 text-center text-gray-900">연혁</h2>
                     <div className="space-y-8">
@@ -102,14 +81,8 @@ export default function IntroPage() {
                 style={{ backgroundColor: brandColors.primary, color: 'white' }}
             >
                 <div className="max-w-4xl mx-auto">
-                    <Smallhead
-                        title="작은 책에서 시작된 실험들"
-                        color="white"
-                    />
-                    <p
-                        className="text-lg mb-8"
-                        style={{ color: 'rgba(255, 255, 255, 0.8)' }}
-                    >
+                    <Smallhead title="작은 책에서 시작된 실험들" color="white" />
+                    <p className="text-lg mb-8" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
                         글, 이미지, 레이아웃의 경계를 허무는 실험을 지속합니다.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

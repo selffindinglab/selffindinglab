@@ -1,6 +1,6 @@
 'use client';
 
-import { brandColors } from '@/lib/context';
+import { brandColors } from '@/app/lib/context';
 import Smallhead from '../components/Smallhead';
 
 export default function ProjectPage() {

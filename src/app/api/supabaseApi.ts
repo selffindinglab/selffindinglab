@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/app/lib/supabase';
 import { Session } from '@supabase/auth-helpers-nextjs';
 export async function signInAnonymously() {
     const { data, error } = await supabase.auth.signInAnonymously();

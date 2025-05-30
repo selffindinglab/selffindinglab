@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, notFound } from 'next/navigation';
 import Image from 'next/image';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/app/lib/supabase';
 
 type Program = {
     id: string;

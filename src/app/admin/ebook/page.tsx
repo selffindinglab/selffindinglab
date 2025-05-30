@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { toPng } from 'html-to-image';
 import jsPDF from 'jspdf';
 import Image from 'next/image';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/app/lib/supabase';
 import { useAuth } from '@/app/context/AuthContext';
 
 type PageType = 'cover' | 'company' | 'toc' | 'content';

@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
-import { brandColors } from '@/lib/context';
+import { brandColors } from '@/app/lib/context';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
-import { useHydration } from '../hook/useHydration';
+import { useHydration } from '../lib/hook/useHydration';
 
 export default function Navbar() {
     const { session, logout } = useAuth();
@@ -83,23 +83,14 @@ export default function Navbar() {
         );
 
     return (
-        <header
-            className="fixed top-0 w-full z-50 shadow"
-            style={{ backgroundColor: brandColors.secondary }}
-        >
+        <header className="fixed top-0 w-full z-50 shadow" style={{ backgroundColor: brandColors.secondary }}>
             <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center font-medium tracking-wide">
                 <Link
                     href="/"
                     className="waguri-font text-lg sm:text-3xl font-semibold flex items-center gap-2"
                     style={{ color: brandColors.primary }}
                 >
-                    <Image
-                        src="/logo.png"
-                        alt="Selffinding Lab 로고"
-                        width={100}
-                        height={100}
-                        priority
-                    />
+                    <Image src="/logo.png" alt="Selffinding Lab 로고" width={100} height={100} priority />
                 </Link>
 
                 {/* 데스크탑 메뉴 */}
@@ -115,15 +106,9 @@ export default function Navbar() {
                 <div className="md:hidden">
                     <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
                         {mobileMenuOpen ? (
-                            <XMarkIcon
-                                className="h-8 w-8"
-                                style={{ color: brandColors.textDark }}
-                            />
+                            <XMarkIcon className="h-8 w-8" style={{ color: brandColors.textDark }} />
                         ) : (
-                            <Bars3Icon
-                                className="h-8 w-8"
-                                style={{ color: brandColors.textDark }}
-                            />
+                            <Bars3Icon className="h-8 w-8" style={{ color: brandColors.textDark }} />
                         )}
                     </button>
                 </div>
@@ -131,10 +116,7 @@ export default function Navbar() {
 
             {/* 모바일 메뉴 */}
             {mobileMenuOpen && (
-                <div
-                    className="md:hidden shadow-lg w-full"
-                    style={{ backgroundColor: brandColors.secondary }}
-                >
+                <div className="md:hidden shadow-lg w-full" style={{ backgroundColor: brandColors.secondary }}>
                     <ul
                         className="flex flex-col items-start gap-4 px-6 py-4 text-xl"
                         style={{ color: brandColors.textDark }}

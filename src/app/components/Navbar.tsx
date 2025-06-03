@@ -12,7 +12,6 @@ export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const hydrated = useHydration();
 
-    // 스크롤 위치 상태
     const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
@@ -21,10 +20,7 @@ export default function Navbar() {
         };
 
         window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     useEffect(() => {
@@ -96,21 +92,32 @@ export default function Navbar() {
             </li>
         );
 
-    const backgroundOpacity = Math.min(scrollY / 200, 0.95);
-    const textColor = backgroundOpacity > 0.4 ? 'text-black' : 'text-white';
-    const buttonIconColor = backgroundOpacity > 0.4 ? 'text-black' : 'text-white';
+    const isScrolled = scrollY > 10;
+    const bgColorClass = isScrolled ? '' : 'bg-deep-ocean';
+    const backgroundStyle = isScrolled
+        ? { backgroundColor: `rgba(255, 255, 255, ${Math.min(scrollY / 200, 0.95)})` }
+        : {};
+    const textColor = isScrolled ? 'text-black' : 'text-white';
+    const buttonIconColor = isScrolled ? 'text-black' : 'text-white';
+    const logoSrc = isScrolled ? '/logob.png' : '/logo.png';
 
     return (
         <header
-            className={`fixed top-0 w-full z-50 shadow transition-colors duration-300`}
-            style={{ backgroundColor: `rgba(255, 255, 255, ${backgroundOpacity})` }}
+            className={`fixed top-0 w-full z-50 duration-300 transition-colors ${bgColorClass}`}
+            style={backgroundStyle}
         >
-            <nav className={`max-w-6xl mx-auto px-6 py-4 flex justify-between items-center font-medium tracking-wide`}>
+            <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center font-medium tracking-wide">
                 <Link
                     href="/"
                     className={`waguri-font text-lg sm:text-3xl font-semibold flex items-center gap-2 ${textColor}`}
                 >
-                    <Image src="/logo.png" alt="Selffinding Lab 로고" width={100} height={100} priority />
+                    <Image
+                        src={logoSrc}
+                        alt="Selffinding Lab 로고"
+                        width={100}
+                        height={100}
+                        priority
+                    />
                 </Link>
 
                 {/* 데스크탑 메뉴 */}

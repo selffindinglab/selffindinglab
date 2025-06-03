@@ -50,58 +50,102 @@ export default function Home() {
         <main className="pt-20 bg-deep-ocean text-white">
             <section
                 id="subscribe"
-                className="h-[calc(100vh-64px)] w-full px-6 text-center bg-deep-ocean relative overflow-hidden flex flex-col justify-between"
+                className="h-[calc(100vh-64px)] w-full px-4 sm:px-6 text-center bg-deep-ocean relative overflow-hidden flex flex-col justify-between"
             >
-                <div className="flex flex-col justify-center items-center flex-grow space-y-8 mt-8">
-                    <h1 className="text-4xl md:text-7xl font-light tracking-tight waguri-font leading-tight text-white">
+                {/* 텍스트 및 이미지 */}
+                <div className="flex flex-col justify-center items-center flex-grow space-y-6 sm:space-y-8 mt-8">
+                    <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight waguri-font leading-tight text-white">
                         자기 찾기 연구소
                     </h1>
 
-                    <div className="flex justify-center items-center gap-4 overflow-x-auto px-4">
-                        <Image src="/1.png" alt="1" width={350} height={350} className="rounded-[50px]" />
-                        <Image src="/2.png" alt="2" width={350} height={350} className="rounded-[50px]" />
-                        <Image src="/3.png" alt="3" width={350} height={350} className="rounded-[50px]" />
+                    <div className="flex justify-center items-center gap-4 overflow-x-auto px-2 sm:px-4">
+                        <Image
+                            src="/1.png"
+                            alt="1"
+                            width={200}
+                            height={200}
+                            className="rounded-[30px] sm:rounded-[50px] w-[200px] sm:w-[300px] md:w-[350px] h-auto"
+                        />
+                        <Image
+                            src="/2.png"
+                            alt="2"
+                            width={200}
+                            height={200}
+                            className="rounded-[30px] sm:rounded-[50px] w-[200px] sm:w-[300px] md:w-[350px] h-auto"
+                        />
+                        <Image
+                            src="/3.png"
+                            alt="3"
+                            width={200}
+                            height={200}
+                            className="rounded-[30px] sm:rounded-[50px] w-[200px] sm:w-[300px] md:w-[350px] h-auto"
+                        />
                     </div>
                 </div>
 
+                {/* 중앙 텍스트 오버레이 */}
                 <div
-                    className="absolute top-1/2 left-1/3 max-w-[90vw] sm:max-w-[400px] px-4 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10 text-white text-left"
+                    className="absolute top-1/2 left-1/2 sm:left-1/3 w-[90%] sm:max-w-[400px] px-4 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10 text-white text-left"
                     style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
                 >
-                    <p className="text-xs uppercase tracking-wide">Mind & Soul</p>
-                    <div className="mt-2 space-y-2">
-                        <span className="block text-4xl sm:text-6xl font-bold leading-tight underline decoration-white decoration-[3px] underline-offset-[12px]">
+                    <p className="text-[10px] sm:text-xs uppercase tracking-wide">Mind & Soul</p>
+                    <div className="mt-2 space-y-1 sm:space-y-2 relative">
+                        <span className="block text-3xl sm:text-4xl md:text-5xl font-bold leading-tight underline decoration-white decoration-[2px] sm:decoration-[3px] underline-offset-[8px] sm:underline-offset-[12px]">
                             MAP
                         </span>
-                        <span className="block text-4xl sm:text-6xl font-bold leading-tight underline decoration-white decoration-[3px] underline-offset-[12px]">
+                        <span className="block text-3xl sm:text-4xl md:text-5xl font-bold leading-tight underline decoration-white decoration-[2px] sm:decoration-[3px] underline-offset-[8px] sm:underline-offset-[12px]">
                             OF THE
                         </span>
-                        <span className="block text-4xl sm:text-6xl font-bold leading-tight relative">
-                            <span className="relative z-10" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
-                                SELF
-                            </span>
+                        <span className="block text-3xl sm:text-4xl md:text-5xl font-bold leading-tight relative">
+                            <span className="relative z-10">SELF</span>
+                            {/* 밑줄 */}
                             <span
-                                className="absolute left-0 bottom-[-14px] w-[220%] h-[5px] bg-white z-0"
+                                className="absolute left-0 bottom-[-10px] sm:bottom-[-14px] w-full sm:w-[220%] h-[3px] sm:h-[5px] bg-white z-0"
                                 style={{ boxShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
-                            ></span>
+                            />
                         </span>
+                        {/* 이미지 (모바일에서 작게, 아래 위치) */}
+                        <img
+                            src="/main.png"
+                            alt="main graphic"
+                            className="absolute hidden sm:block"
+                            style={{
+                                bottom: '-60px',
+                                right: -300,
+                                width: '500px',
+                                height: 'auto',
+                                zIndex: 20,
+                            }}
+                        />
                     </div>
-                    <p className="text-sm mt-4">What’s on your mind?</p>
+                    <p className="text-xs sm:text-sm mt-3 sm:mt-4">What’s on your mind?</p>
                 </div>
             </section>
 
             <SelfFindingRail />
             <BookSection books={books} />
-            <section id="intro" className="py-24 px-6 text-center bg-sand-dollar">
+            <section
+                id="intro"
+                className="py-24 px-6 text-center bg-sand-dollar"
+            >
                 <div className="max-w-3xl mx-auto animate-fade-in">
                     <p className="text-lg leading-relaxed whitespace-pre-line text-vista-blue">{intro}</p>
                 </div>
             </section>
-            <section id="news" className="py-20 px-6 text-center bg-deep-ocean">
-                <Smallhead title="콜라보 행사" color="white" />
+            <section
+                id="news"
+                className="py-20 px-6 text-center bg-deep-ocean"
+            >
+                <Smallhead
+                    title="콜라보 행사"
+                    color="white"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {events.map((event) => (
-                        <div key={event.id} className="rounded-2xl overflow-hidden bg-sand-dollar text-crab shadow-lg">
+                        <div
+                            key={event.id}
+                            className="rounded-2xl overflow-hidden bg-sand-dollar text-crab shadow-lg"
+                        >
                             <Image
                                 src={event.image_url}
                                 alt={event.title}

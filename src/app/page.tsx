@@ -3,9 +3,11 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Smallhead from './components/Smallhead';
-import { intro, title, brandColors } from '@/app/lib/context';
-import { Book, Event } from '@/app/lib/type';
 import { supabase } from '@/app/lib/supabase';
+import { Book, Event } from '@/app/lib/type';
+import SelfFindingRail from './components/SelfFindingRail';
+import { intro } from './lib/context';
+import BookSection from './components/BookSection';
 
 export default function Home() {
     const [books, setBooks] = useState<Book[]>([]);
@@ -15,27 +17,28 @@ export default function Home() {
         const fetchBooks = async () => {
             const { data, error } = await supabase
                 .from('books')
-                .select('id, title, genre, image_url,published_at')
+                .select('id, title, genre, image_url, published_at')
                 .order('published_at', { ascending: false })
                 .limit(4);
 
             if (error) {
                 console.error('책 데이터 오류:', error);
             } else {
-                setBooks(data);
+                setBooks(data || []);
             }
         };
 
         const fetchEvents = async () => {
             const { data, error } = await supabase
                 .from('event')
-                .select('id, title, description, image_url,date,time,link,location,subtitle,program_type')
+                .select('id, title, description, image_url, date, time, link, location, subtitle, program_type')
                 .order('date', { ascending: false })
-                .limit(3); // 최근 3개만 가져오기
+                .limit(3);
+
             if (error) {
                 console.error('행사 데이터 오류:', error);
             } else {
-                setEvents(data);
+                setEvents(data || []);
             }
         };
 
@@ -44,74 +47,61 @@ export default function Home() {
     }, []);
 
     return (
-        <main className="pt-20" style={{ backgroundColor: brandColors.primary, color: 'white' }}>
-            {/* Hero Section */}
-            <section id="subscribe" className="w-full py-32 px-6 text-center">
-                <h1 className="text-5xl md:text-7xl font-light tracking-tight waguri-font leading-tight">{title}</h1>
-                <p className="mt-6 text-lg md:text-xl font-light" style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
-                    출판과 실험을 사랑하는
-                    <br className="sm:hidden" />
-                    &nbsp;1인 출판사
-                </p>
-                <p
-                    className="mt-10 max-w-2xl mx-auto text-base md:text-lg leading-relaxed whitespace-pre-line"
-                    style={{ color: 'rgba(255, 255, 255, 0.7)' }}
+        <main className="pt-20 bg-deep-ocean text-white">
+            <section
+                id="subscribe"
+                className="h-[calc(100vh-64px)] w-full px-6 text-center bg-deep-ocean relative overflow-hidden flex flex-col justify-between"
+            >
+                <div className="flex flex-col justify-center items-center flex-grow space-y-8 mt-8">
+                    <h1 className="text-4xl md:text-7xl font-light tracking-tight waguri-font leading-tight text-white">
+                        자기 찾기 연구소
+                    </h1>
+
+                    <div className="flex justify-center items-center gap-4 overflow-x-auto px-4">
+                        <Image src="/1.png" alt="1" width={350} height={350} className="rounded-[50px]" />
+                        <Image src="/2.png" alt="2" width={350} height={350} className="rounded-[50px]" />
+                        <Image src="/3.png" alt="3" width={350} height={350} className="rounded-[50px]" />
+                    </div>
+                </div>
+
+                <div
+                    className="absolute top-1/2 left-1/3 max-w-[90vw] sm:max-w-[400px] px-4 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10 text-white text-left"
+                    style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
                 >
-                    {intro}
-                </p>
-            </section>
-
-            {/* Book Grid Section */}
-            <section id="books" className="py-20 px-4 max-w-6xl mx-auto text-center">
-                <Smallhead title="출간 도서" color="white" />
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 justify-items-center">
-                    {books.map((book) => (
-                        <button
-                            key={book.id}
-                            className="w-full flex flex-col items-center transition-transform hover:scale-105"
-                        >
-                            <Image
-                                src={book.image_url}
-                                alt={book.title}
-                                width={200}
-                                height={300}
-                                className="rounded w-full shadow-xl"
-                            />
-                            <p className="mt-3 text-base font-medium">{book.title}</p>
-                        </button>
-                    ))}
-                </div>
-
-                {/* {selectedBook && <BookModal book={selectedBook} onClose={() => setSelectedBook(null)} />} */}
-            </section>
-
-            {/* Intro Section */}
-            <section
-                id="intro"
-                className="py-24 px-6 text-center"
-                style={{ backgroundColor: brandColors.secondary, color: brandColors.textDark }}
-            >
-                <div className="max-w-3xl mx-auto animate-fade-in">
-                    <p className="text-lg leading-relaxed whitespace-pre-line" style={{ color: brandColors.textSoft }}>
-                        <span className="font-medium" style={{ color: brandColors.textDark }}>
-                            {title}
+                    <p className="text-xs uppercase tracking-wide">Mind & Soul</p>
+                    <div className="mt-2 space-y-2">
+                        <span className="block text-4xl sm:text-6xl font-bold leading-tight underline decoration-white decoration-[3px] underline-offset-[12px]">
+                            MAP
                         </span>
-                        {`는\n`}
-                        {intro}
-                    </p>
+                        <span className="block text-4xl sm:text-6xl font-bold leading-tight underline decoration-white decoration-[3px] underline-offset-[12px]">
+                            OF THE
+                        </span>
+                        <span className="block text-4xl sm:text-6xl font-bold leading-tight relative">
+                            <span className="relative z-10" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                                SELF
+                            </span>
+                            <span
+                                className="absolute left-0 bottom-[-14px] w-[220%] h-[5px] bg-white z-0"
+                                style={{ boxShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
+                            ></span>
+                        </span>
+                    </div>
+                    <p className="text-sm mt-4">What’s on your mind?</p>
                 </div>
             </section>
 
-            {/* News Section */}
-            <section
-                id="news"
-                className="py-20 px-6 text-center"
-                style={{ backgroundColor: brandColors.primary, color: 'white' }}
-            >
+            <SelfFindingRail />
+            <BookSection books={books} />
+            <section id="intro" className="py-24 px-6 text-center bg-sand-dollar">
+                <div className="max-w-3xl mx-auto animate-fade-in">
+                    <p className="text-lg leading-relaxed whitespace-pre-line text-vista-blue">{intro}</p>
+                </div>
+            </section>
+            <section id="news" className="py-20 px-6 text-center bg-deep-ocean">
                 <Smallhead title="콜라보 행사" color="white" />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {events.map((event) => (
-                        <div key={event.id} className="rounded-2xl overflow-hidden bg-white text-black shadow-lg">
+                        <div key={event.id} className="rounded-2xl overflow-hidden bg-sand-dollar text-crab shadow-lg">
                             <Image
                                 src={event.image_url}
                                 alt={event.title}

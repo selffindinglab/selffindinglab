@@ -13,7 +13,7 @@ export const intro = `안녕하세요 자기찾기 연구소 출판사입니다 
 
 export const brandColors = {
     primary: '#4B3F72', // 고전적이고 신뢰감 있는 진한 보라빛 남색
-    secondary: '#F5F0E6', // 따뜻하고 부드러운 크림색 (책 종이 느낌)
+    secondary: '#Fcded6', // 따뜻하고 부드러운 크림색 (책 종이 느낌)
     textDark: '#2D2A26', // 차분하면서도 읽기 좋은 짙은 갈색
     textSoft: '#7D7463', // 따뜻한 회갈색, 부드러운 인상
 };

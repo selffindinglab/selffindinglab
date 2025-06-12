@@ -62,23 +62,23 @@ export default function Home() {
                         <Image
                             src="/1.png"
                             alt="1"
-                            width={200}
-                            height={200}
-                            className="rounded-[30px] sm:rounded-[50px] w-[200px] sm:w-[300px] md:w-[350px] h-auto"
+                            width={160}
+                            height={240}
+                            className="rounded-xl sm:rounded-3xl w-[160px] h-[240px] sm:w-[220px] sm:h-[330px] md:w-[250px] md:h-[360px] object-cover"
                         />
                         <Image
                             src="/2.png"
                             alt="2"
-                            width={200}
-                            height={200}
-                            className="rounded-[30px] sm:rounded-[50px] w-[200px] sm:w-[300px] md:w-[350px] h-auto"
+                            width={160}
+                            height={240}
+                            className="rounded-xl sm:rounded-3xl w-[160px] h-[240px] sm:w-[220px] sm:h-[330px] md:w-[250px] md:h-[360px] object-cover"
                         />
                         <Image
                             src="/3.png"
                             alt="3"
-                            width={200}
-                            height={200}
-                            className="rounded-[30px] sm:rounded-[50px] w-[200px] sm:w-[300px] md:w-[350px] h-auto"
+                            width={160}
+                            height={240}
+                            className="rounded-xl sm:rounded-3xl w-[160px] h-[240px] sm:w-[220px] sm:h-[330px] md:w-[250px] md:h-[360px] object-cover"
                         />
                     </div>
                 </div>
@@ -98,13 +98,11 @@ export default function Home() {
                         </span>
                         <span className="block text-3xl sm:text-4xl md:text-5xl font-bold leading-tight relative">
                             <span className="relative z-10">SELF</span>
-                            {/* 밑줄 */}
                             <span
                                 className="absolute left-0 bottom-[-10px] sm:bottom-[-14px] w-full sm:w-[220%] h-[3px] sm:h-[5px] bg-white z-0"
                                 style={{ boxShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
                             />
                         </span>
-                        {/* 이미지 (모바일에서 작게, 아래 위치) */}
                         <img
                             src="/main.png"
                             alt="main graphic"
@@ -124,6 +122,7 @@ export default function Home() {
 
             <SelfFindingRail />
             <BookSection books={books} />
+
             <section
                 id="intro"
                 className="py-24 px-6 text-center bg-sand-dollar"
@@ -132,6 +131,7 @@ export default function Home() {
                     <p className="text-lg leading-relaxed whitespace-pre-line text-vista-blue">{intro}</p>
                 </div>
             </section>
+
             <section
                 id="news"
                 className="py-20 px-6 text-center bg-deep-ocean"
@@ -140,19 +140,20 @@ export default function Home() {
                     title="콜라보 행사"
                     color="white"
                 />
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {events.map((event) => (
                         <div
                             key={event.id}
                             className="rounded-2xl overflow-hidden bg-sand-dollar text-crab shadow-lg"
                         >
-                            <Image
-                                src={event.image_url}
-                                alt={event.title}
-                                width={400}
-                                height={300}
-                                className="w-full h-60 object-cover"
-                            />
+                            <div className="relative w-full h-[400px] sm:h-[460px] md:h-[500px]">
+                                <Image
+                                    src={event.image_url}
+                                    alt={event.title}
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
                             <div className="p-4 text-left">
                                 <h3 className="text-xl font-semibold">{event.title}</h3>
                             </div>

@@ -106,7 +106,7 @@ export default function Navbar() {
             className={`fixed top-0 w-full z-50 duration-300 transition-colors ${bgColorClass}`}
             style={backgroundStyle}
         >
-            <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center font-medium tracking-wide">
+            <nav className="max-w-6xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex justify-between items-center font-medium tracking-wide">
                 <Link
                     href="/"
                     className={`waguri-font text-lg sm:text-3xl font-semibold flex items-center gap-2 ${textColor}`}
@@ -117,16 +117,15 @@ export default function Navbar() {
                         width={100}
                         height={100}
                         priority
+                        className="w-10 h-10 sm:w-16 sm:h-16" // 모바일: 40px, sm 이상: 96px
                     />
                 </Link>
 
-                {/* 데스크탑 메뉴 */}
                 <ul className={`hidden md:flex gap-6 text-xl sm:text-2xl items-center ${textColor}`}>
                     {renderNavItems()}
                     {renderAuthItems()}
                 </ul>
 
-                {/* 햄버거 버튼 */}
                 <div className="md:hidden">
                     <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
                         {mobileMenuOpen ? (

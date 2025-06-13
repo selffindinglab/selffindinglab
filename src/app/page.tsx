@@ -83,7 +83,6 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* 중앙 텍스트 오버레이 */}
                 <div
                     className="absolute top-1/2 left-1/2 sm:left-1/3 w-[90%] sm:max-w-[400px] px-4 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10 text-white text-left"
                     style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
@@ -103,17 +102,20 @@ export default function Home() {
                                 style={{ boxShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
                             />
                         </span>
-                        <img
+                        <Image
                             src="/main.png"
                             alt="main graphic"
                             className="absolute hidden sm:block"
                             style={{
                                 bottom: '-60px',
-                                right: -300,
+                                right: '-300px',
                                 width: '500px',
                                 height: 'auto',
                                 zIndex: 20,
                             }}
+                            width={500}
+                            height={500}
+                            priority
                         />
                     </div>
                     <p className="text-xs sm:text-sm mt-3 sm:mt-4">What’s on your mind?</p>
@@ -123,36 +125,19 @@ export default function Home() {
             <SelfFindingRail />
             <BookSection books={books} />
 
-            <section
-                id="intro"
-                className="py-24 px-6 text-center bg-sand-dollar"
-            >
+            <section id="intro" className="py-24 px-6 text-center bg-sand-dollar">
                 <div className="max-w-3xl mx-auto animate-fade-in">
                     <p className="text-lg leading-relaxed whitespace-pre-line text-vista-blue">{intro}</p>
                 </div>
             </section>
 
-            <section
-                id="news"
-                className="py-20 px-6 text-center bg-deep-ocean"
-            >
-                <Smallhead
-                    title="콜라보 행사"
-                    color="white"
-                />
+            <section id="news" className="py-20 px-6 text-center bg-deep-ocean">
+                <Smallhead title="콜라보 행사" color="white" size="lg" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {events.map((event) => (
-                        <div
-                            key={event.id}
-                            className="rounded-2xl overflow-hidden bg-sand-dollar text-crab shadow-lg"
-                        >
+                        <div key={event.id} className="rounded-2xl overflow-hidden bg-sand-dollar text-crab shadow-lg">
                             <div className="relative w-full h-[400px] sm:h-[460px] md:h-[500px]">
-                                <Image
-                                    src={event.image_url}
-                                    alt={event.title}
-                                    fill
-                                    className="object-cover"
-                                />
+                                <Image src={event.image_url} alt={event.title} fill className="object-cover" />
                             </div>
                             <div className="p-4 text-left">
                                 <h3 className="text-xl font-semibold">{event.title}</h3>

@@ -51,9 +51,8 @@ export default function NewsPage() {
     return (
         <main className="pt-20 bg-white text-gray-900">
             <section className="px-4 sm:px-6 py-24 max-w-6xl mx-auto text-center">
-                <Smallhead title="이벤트 스케치" color="black" />
+                <Smallhead size="lg" title="이벤트 스케치" color="black" />
 
-                {/* 필터 버튼들 */}
                 <div className="mb-10 flex flex-wrap justify-center gap-3 sm:gap-4">
                     {['전체', '강연', '이벤트', '원데이클래스'].map((type) => (
                         <button

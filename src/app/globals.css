@@ -1,19 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap'); /* ✅ 제일 위에 */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: 'WAGURITTF';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403@1.0/WAGURITTF.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
 * {
-    font-family: 'WAGURITTF', sans-serif;
-    font-weight: 200;
-}
-.waguri-font {
-    font-family: 'WAGURITTF', sans-serif;
-    font-weight: 500;
+    font-family: 'Black Han Sans', sans-serif;
 }

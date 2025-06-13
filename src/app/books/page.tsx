@@ -36,7 +36,7 @@ export default function BookListPage() {
     return (
         <main className="pt-20 bg-white text-gray-900">
             <section className="px-6 py-24 max-w-6xl mx-auto text-center">
-                <Smallhead title="출간 도서" color="black" />
+                <Smallhead title="출간 도서" color="black" size="lg" />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {books.map((book) => (
                         <Link key={book.id} href={`/books/${book.title}`}>

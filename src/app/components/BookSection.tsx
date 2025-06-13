@@ -109,7 +109,7 @@ const BookSection = ({ books }: BookSectionProps) => {
 
     return (
         <section id="books" className="bg-gray-100 py-20 px-4 text-center">
-            <Smallhead title="출간 도서" color="black" />
+            <Smallhead title="출간 도서" color="black" size="lg" />
 
             <div className="w-full max-w-6xl mx-auto flex flex-row gap-8 justify-center items-start">
                 {/* 모바일에서는 상세 영역 숨김 */}

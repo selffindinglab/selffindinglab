@@ -5,5 +5,5 @@
 @tailwind utilities;
 * {
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 300; /* 얇은 스타일 */
+    font-weight: 500; /* 얇은 스타일 */
 }

@@ -54,7 +54,7 @@ export default function Home() {
             >
                 {/* 텍스트 및 이미지 */}
                 <div className="flex flex-col justify-center items-center flex-grow space-y-6 sm:space-y-8 mt-8">
-                    <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight waguri-font leading-tight text-white">
+                    <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black tracking-tight waguri-font leading-tight text-white">
                         자기 찾기 연구소
                     </h1>
 
@@ -125,19 +125,37 @@ export default function Home() {
             <SelfFindingRail />
             <BookSection books={books} />
 
-            <section id="intro" className="py-24 px-6 text-center bg-sand-dollar">
+            <section
+                id="intro"
+                className="py-24 px-6 text-center bg-sand-dollar"
+            >
                 <div className="max-w-3xl mx-auto animate-fade-in">
                     <p className="text-lg leading-relaxed whitespace-pre-line text-vista-blue">{intro}</p>
                 </div>
             </section>
 
-            <section id="news" className="py-20 px-6 text-center bg-deep-ocean">
-                <Smallhead title="콜라보 행사" color="white" size="lg" />
+            <section
+                id="news"
+                className="py-20 px-6 text-center bg-deep-ocean"
+            >
+                <Smallhead
+                    title="콜라보 행사"
+                    color="white"
+                    size="lg"
+                />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {events.map((event) => (
-                        <div key={event.id} className="rounded-2xl overflow-hidden bg-sand-dollar text-crab shadow-lg">
+                        <div
+                            key={event.id}
+                            className="rounded-2xl overflow-hidden bg-sand-dollar text-crab shadow-lg"
+                        >
                             <div className="relative w-full h-[400px] sm:h-[460px] md:h-[500px]">
-                                <Image src={event.image_url} alt={event.title} fill className="object-cover" />
+                                <Image
+                                    src={event.image_url}
+                                    alt={event.title}
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                             <div className="p-4 text-left">
                                 <h3 className="text-xl font-semibold">{event.title}</h3>

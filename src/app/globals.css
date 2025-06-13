@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap'); /* ✅ 제일 위에 */
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
 
 * {
-    font-family: 'Black Han Sans', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300; /* 얇은 스타일 */
 }

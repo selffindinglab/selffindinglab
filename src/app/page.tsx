@@ -52,7 +52,6 @@ export default function Home() {
                 id="subscribe"
                 className="h-[calc(100vh-64px)] w-full px-4 sm:px-6 text-center bg-deep-ocean relative overflow-hidden flex flex-col justify-between"
             >
-                {/* 텍스트 및 이미지 */}
                 <div className="flex flex-col justify-center items-center flex-grow space-y-6 sm:space-y-8 mt-8">
                     <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black tracking-tight waguri-font leading-tight text-white">
                         자기 찾기 연구소
